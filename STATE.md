@@ -1,13 +1,13 @@
 # STATE
 
 ## Arquitetura
-CLI Node.js (ESM, zero dependências): `fetch` da URL → `htmlToText` (remove script/style, preserva quebras de bloco, decodifica entidades).
+CLI Node.js (ESM, zero dependências): `fetchHtml` → `isolateMainHtml` (`<main>`/`<article>`/`<body>` sem `<nav>`/`<aside>`/`<footer>`) → `htmlToText` (remove script/style/svg, limpa `<li>` vazios, preserva quebras e caixas expansíveis) + `auditExtraction`.
 
 ## Implementado
-- `src/extract.mjs`: `extractFromUrl`, `htmlToText`, `decodeEntities` e CLI.
-- `test/extract.test.mjs`: testes unitários (`npm test`).
+- `src/extract.mjs`: `fetchHtml`, `extractFromUrl`, `isolateMainHtml`, `htmlToText`, `decodeEntities`, `auditExtraction` e CLI (`--full`, `--audit`).
+- `test/extract.test.mjs`: 4 testes unitários (`npm test`).
+- Validado em página real da Wikipédia (`744/744` parágrafos/títulos e `83/83` caixas `mw-collapsible` preservadas).
 
 ## Próximos passos
-- Isolar conteúdo principal (article/main) como opção.
-- Suporte a páginas com JS (navegador headless), PDF e saída Markdown.
+- Suporte a páginas renderizadas via JS (navegador headless), PDF e saída Markdown.
 - Respeitar robots.txt / opções de user-agent.
