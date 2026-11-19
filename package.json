@@ -1,0 +1,13 @@
+{
+  "name": "web-text-extractor",
+  "version": "0.1.0",
+  "description": "Extrai o texto na íntegra de páginas da internet",
+  "type": "module",
+  "bin": { "web-text-extractor": "src/extract.mjs" },
+  "scripts": {
+    "extract": "node src/extract.mjs",
+    "test": "node --test test/"
+  },
+  "engines": { "node": ">=20" },
+  "license": "MIT"
+}
